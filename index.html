@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>طاولة المنافسين | NextStep AI</title>
+<meta name="description" content="لقاء تعارفي وجاهي يجمع قادة المشاريع لبحث سبل التعاون | An in-person introductory meeting for project leaders">
+<link rel="icon" href="assets/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0B1220;--mut:#475569;--line:#E2E8F0;--bg:#F6F8FC;--blue:#2563EB;--cyan:#06B6D4}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:Manrope,Tajawal,system-ui,sans-serif;background:#fff;color:var(--ink);line-height:1.8}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:.55}
+a{color:var(--blue);font-weight:700;text-underline-offset:4px}
+.ic{width:1.3em;height:1.3em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+[dir=rtl] .arr{transform:scaleX(-1)}
+.w{max-width:1080px;margin:auto;padding:0 22px}
+section{padding:76px 0;border-top:1px solid var(--line)}
+.sec{display:flex;gap:14px;align-items:baseline;margin-bottom:28px}
+.sec i{font-style:normal;font-family:Manrope,sans-serif;font-weight:800;color:var(--blue);font-size:.95rem;letter-spacing:.06em}
+h2{font-family:Tajawal,Manrope,sans-serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;line-height:1.35}
+h1{font-family:Tajawal,Manrope,sans-serif;font-size:clamp(2.6rem,7.5vw,4.6rem);line-height:1.18;font-weight:800;perspective:700px}
+.ln{display:block;animation:up .9s cubic-bezier(.2,.8,.2,1) both}.ln+.ln{animation-delay:.2s;color:var(--blue)}
+@keyframes up{from{opacity:0;transform:translateY(30px) rotateX(-40deg)}}
+nav.t{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.t.s{border-color:var(--line)}
+nav.t .w{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font:800 1.25rem Manrope,sans-serif;direction:ltr}
+.brand img{height:40px;width:40px}.brand em{font-style:normal;color:var(--cyan)}
+.nl{display:flex;gap:26px}.nl a{color:var(--mut);font-weight:500;text-decoration:none}.nl a:hover{color:var(--blue)}
+.act{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:12px 26px;border-radius:12px;background:var(--blue);color:#fff;font-weight:700;font-size:1rem;font-family:inherit;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(37,99,235,.28);background:#1d4ed8}
+.btn.o{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}.btn.o:hover{box-shadow:inset 0 0 0 1.5px var(--blue);color:var(--blue)}
+.btn.sm{padding:8px 16px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;padding:56px 0 76px;border:0}
+.tag{display:inline-flex;gap:8px;align-items:center;padding:6px 14px;border:1px solid var(--line);border-radius:99px;background:#fff;color:var(--mut);font-size:.9rem;font-weight:500;margin-bottom:20px}
+.tag .ic{color:var(--blue)}
+.hero p{max-width:520px;margin:20px 0 28px;color:var(--mut);font-size:1.12rem}
+.hero .btn{margin-inline-end:10px;margin-bottom:10px}
+.stats{display:flex;gap:34px;margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}
+.stats b{display:block;font:800 2rem/1.1 Manrope,sans-serif;color:var(--ink)}.stats span{color:var(--mut);font-size:.9rem}
+.vis{perspective:900px}
+.frame{border-radius:28px;background:var(--bg);border:1px solid var(--line);padding:10px;transition:transform .2s ease-out;box-shadow:0 30px 60px rgba(11,18,32,.1)}
+.frame img{width:100%;display:block;border-radius:20px;mix-blend-mode:multiply}
+.three{display:grid;grid-template-columns:repeat(3,1fr)}
+.three>div{padding:6px 26px;border-inline-start:1px solid var(--line)}.three>div:first-child{border:0;padding-inline-start:0}
+.ico{width:52px;height:52px;border-radius:14px;background:#EAF1FF;color:var(--blue);display:grid;place-items:center;margin-bottom:14px;transition:background .3s,color .3s,transform .3s}
+.three>div:hover .ico{background:var(--blue);color:#fff;transform:translateY(-3px)}
+h3{font-family:Tajawal,Manrope,sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:4px}
+.mut{color:var(--mut)}
+.lead{max-width:700px;font-size:1.1rem;color:var(--mut);margin-bottom:34px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:26px}
+.box h3{margin-bottom:12px}
+.box ul{list-style:none;padding:0;display:grid;gap:10px}
+.box li{display:flex;gap:10px;align-items:flex-start}
+.y .ic{color:#059669}.n .ic{color:#dc2626}.y h3{color:#059669}.n h3{color:#dc2626}
+.bar{display:flex;gap:4px;height:14px;margin-bottom:26px}
+.bar i{border-radius:4px;background:var(--blue);opacity:.35;transition:opacity .3s}.bar i:nth-child(odd){background:var(--cyan)}.bar:hover i{opacity:.35}.bar i:hover{opacity:1}
+.tl{list-style:none;padding:0;display:grid;gap:0}
+.tl li{display:flex;gap:18px;padding:14px 0;border-bottom:1px solid var(--line)}
+.tl b{min-width:54px;font:800 1.1rem Manrope,sans-serif;color:var(--blue)}
+.tot{margin-top:16px;display:flex;gap:8px;align-items:center;font-weight:700}
+.st{list-style:none;padding:0;counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.st li{counter-increment:s;background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:22px;transition:transform .25s}
+.st li:hover{transform:translateY(-4px)}
+.st li:before{content:"0" counter(s);display:block;font:800 1.7rem Manrope,sans-serif;color:var(--blue);margin-bottom:6px}
+.st .ic{color:var(--blue);margin-inline-end:6px;vertical-align:-3px}
+.meet{margin-top:22px;display:flex;gap:10px;align-items:center;padding:16px 20px;border:1px dashed #94a3b8;border-radius:16px;font-weight:700}
+.meet .ic{color:var(--blue)}
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;align-items:center}
+.about img{width:100%;border-radius:26px;display:block;box-shadow:0 24px 50px rgba(37,99,235,.15)}
+form{display:grid;gap:18px;background:#fff;border:1px solid var(--line);border-radius:26px;padding:30px;box-shadow:0 20px 50px rgba(11,18,32,.06)}
+fieldset{border:0;display:grid;gap:14px;padding:0}
+legend{font-weight:800;color:var(--blue);margin-bottom:8px;font-size:.95rem}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:5px;font-weight:700;font-size:.92rem}
+label small{font-weight:400;color:#64748b}
+input,textarea{font:inherit;padding:12px 14px;border:1.5px solid #cbd5e1;border-radius:12px;background:#fff;width:100%;transition:border-color .2s,box-shadow .2s}
+input:hover,textarea:hover{border-color:#94a3b8}
+input:focus,textarea:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px rgba(37,99,235,.14)}
+.ck{display:flex;gap:10px;align-items:flex-start;font-weight:500}.ck input{width:auto;margin-top:8px}
+#msg{font-weight:700}
+footer{background:var(--ink);color:#cbd5e1;padding:56px 0 34px}
+.fc{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.fc img{width:104px;height:104px;border-radius:50%;object-fit:cover;background:#1e293b;box-shadow:0 0 0 4px var(--ink),0 0 0 6px var(--cyan)}
+.fc b{color:#fff;font-size:1.15rem;display:block}
+.fc nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.fc a{display:inline-flex;gap:8px;align-items:center;color:#fff;font-weight:500;text-decoration:none;padding:8px 14px;border-radius:10px;background:rgba(255,255,255,.08);transition:background .2s}
+.fc a:hover{background:var(--blue)}
+.cp{margin-top:34px;padding-top:20px;border-top:1px solid #1e293b;font-size:.85rem;color:#94a3b8}
+html.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}html.js .rv.in{opacity:1;transform:none}
+@media(max-width:820px){.nl{display:none}.hero,.about,.two,.three,.st,.g2{grid-template-columns:1fr}.three>div{border:0;padding:0 0 22px}.stats{gap:22px}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><path d="M8 12h8"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-form" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5Z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="i-in" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></symbol>
+<symbol id="i-ig" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></symbol>
+</defs></svg>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<nav class="t" id="nv"><div class="w">
+<a class="brand" href="#" aria-label="NextStep AI"><img src="assets/logo.png" alt=""><span>NextStep <em>AI</em></span></a>
+<div class="nl"><a href="#idea" data-ar="الفكرة" data-en="The idea"></a><a href="#program" data-ar="البرنامج" data-en="Program"></a><a href="#join" data-ar="الانضمام" data-en="How to join"></a></div>
+<div class="act"><button class="btn o sm" id="lb" onclick="setL(L=='ar'?'en':'ar')">EN</button><a class="btn sm" href="#apply"><span data-ar="قدّم طلبك" data-en="Apply"></span></a></div>
+</div></nav>
+
+<main class="w">
+<section class="hero">
+<div>
+<span class="tag"><svg class="ic"><use href="#i-pin"/></svg><span data-ar="لقاء تعارفي وجاهي · غزة" data-en="In-person introductory meeting · Gaza"></span></span>
+<h1><span class="ln" data-ar="من المنافسة..." data-en="From competition..."></span><span class="ln" data-ar="إلى الطاولة." data-en="to the table."></span></h1>
+<p data-ar="لقاء يجمع قادة المشاريع التي خاضت تجربة الهاكاثون، لنتعرّف على بعضنا، ونبحث سبل التعاون، ونخرج من غزة إلى العالم بصوت واحد قوي وملهم." data-en="A meeting for the leaders of projects that went through the hackathon: to get to know each other, explore collaboration, and take Gaza to the world with one strong, inspiring voice."></p>
+<a class="btn" href="#apply"><span data-ar="قدّم طلب الانضمام" data-en="Apply to join"></span><svg class="ic arr"><use href="#i-arrow"/></svg></a>
+<a class="btn o" href="#idea"><span data-ar="لماذا هذا اللقاء؟" data-en="Why this meeting?"></span></a>
+<div class="stats">
+<div><b>95</b><span data-ar="دقيقة من الحوار" data-en="minutes of dialogue"></span></div>
+<div><b>7</b><span data-ar="محطات في البرنامج" data-en="program stages"></span></div>
+<div><b>1</b><span data-ar="طاولة واحدة" data-en="shared table"></span></div>
+</div>
+</div>
+<div class="vis"><div class="frame" id="fr"><img src="assets/table.jpg" alt="قادة المشاريع حول طاولة واحدة | Project leaders around one table"></div></div>
+</section>
+
+<section id="idea">
+<div class="sec"><i>01</i><h2 data-ar="لماذا دُعيتم إلى هذه الطاولة؟" data-en="Why were you invited to this table?"></h2></div>
+<p class="lead rv" data-ar="كل فريق منكم بنى مشروعًا حقيقيًا في ظروف صعبة، وكل مشروع يملك ما يحتاجه غيره: مهارة، أو خبرة، أو علاقة، أو فكرة. لذلك نجمعكم لتتعارفوا وجهًا لوجه، لا لنقارن مشروعًا بآخر." data-en="Each of you built a real project under difficult conditions, and every project holds something another one needs: a skill, an experience, a connection, or an idea. So we bring you together to meet face to face, not to compare one project with another."></p>
+<div class="three rv">
+<div><div class="ico"><svg class="ic"><use href="#i-users"/></svg></div><h3 data-ar="تعارف حقيقي" data-en="A real introduction"></h3><p class="mut" data-ar="تتعرّف القيادات على بعضها: من أنتم، وماذا بنيتم، وما الذي يشغلكم." data-en="Leaders get to know each other: who you are, what you built, and what drives you."></p></div>
+<div><div class="ico"><svg class="ic"><use href="#i-link"/></svg></div><h3 data-ar="سبل التعاون" data-en="Ways to collaborate"></h3><p class="mut" data-ar="نبحث معًا أين يكمّل مشروعٌ مشروعًا آخر، وما الذي يمكن أن نبنيه سويًا." data-en="Together we look for where one project completes another, and what we could build side by side."></p></div>
+<div><div class="ico"><svg class="ic"><use href="#i-globe"/></svg></div><h3 data-ar="صوت واحد من غزة" data-en="One voice from Gaza"></h3><p class="mut" data-ar="حين نتعاون، يصبح صوتنا أقوى عند المجتمع والطلبة والشركاء وأمام العالم." data-en="When we collaborate, our voice grows stronger with the community, students, partners, and the world."></p></div>
+</div>
+</section>
+
+<section>
+<div class="sec"><i>02</i><h2 data-ar="ما هو اللقاء، وما ليس هو" data-en="What the meeting is, and is not"></h2></div>
+<div class="two rv">
+<div class="box y"><h3 data-ar="ما هو اللقاء" data-en="What it is"></h3><ul>
+<li><svg class="ic"><use href="#i-check"/></svg><span data-ar="لقاء تعارفي بين قادة الفرق" data-en="An introductory meeting between team leaders"></span></li>
+<li><svg class="ic"><use href="#i-check"/></svg><span data-ar="مساحة لتبادل التجارب والدروس" data-en="A space to share experiences and lessons"></span></li>
+<li><svg class="ic"><use href="#i-check"/></svg><span data-ar="بحث عملي في فرص التعاون" data-en="A practical search for collaboration opportunities"></span></li>
+<li><svg class="ic"><use href="#i-check"/></svg><span data-ar="بداية علاقة تستمر بعد اللقاء" data-en="The start of a relationship that lasts beyond the meeting"></span></li></ul></div>
+<div class="box n"><h3 data-ar="ما ليس هو" data-en="What it is not"></h3><ul>
+<li><svg class="ic"><use href="#i-x"/></svg><span data-ar="منافسة جديدة" data-en="A new competition"></span></li>
+<li><svg class="ic"><use href="#i-x"/></svg><span data-ar="عرض تسويقي لمشروع" data-en="A sales pitch for a project"></span></li>
+<li><svg class="ic"><use href="#i-x"/></svg><span data-ar="تقييم أو ترتيب للفرق" data-en="A ranking or evaluation of teams"></span></li>
+<li><svg class="ic"><use href="#i-x"/></svg><span data-ar="مطالبة بكشف أسرار المشروع" data-en="A request to reveal project secrets"></span></li></ul></div>
+</div>
+</section>
+
+<section id="program">
+<div class="sec"><i>03</i><h2 data-ar="برنامج اللقاء" data-en="Meeting program"></h2></div>
+<div class="rv">
+<div class="bar" aria-hidden="true"><i style="flex:5"></i><i style="flex:10"></i><i style="flex:20"></i><i style="flex:25"></i><i style="flex:20"></i><i style="flex:10"></i><i style="flex:5"></i></div>
+<ol class="tl">
+<li><b>5′</b><span data-ar="الافتتاح وتوضيح الفكرة" data-en="Opening and the idea behind the meeting"></span></li>
+<li><b>10′</b><span data-ar="التعارف بين القادة" data-en="Introductions between leaders"></span></li>
+<li><b>20′</b><span data-ar="حكاية التجربة: كيف بدأ كل مشروع" data-en="The story: how each project began"></span></li>
+<li><b>25′</b><span data-ar="التحديات والدروس التي لا تظهر للجمهور" data-en="Challenges and lessons the public never sees"></span></li>
+<li><b>20′</b><span data-ar="من المنافسة إلى التعاون: أين نتكامل" data-en="From competition to collaboration: where we fit together"></span></li>
+<li><b>10′</b><span data-ar="التوصيات والخطوات التالية" data-en="Recommendations and next steps"></span></li>
+<li><b>5′</b><span data-ar="الختام" data-en="Closing"></span></li>
+</ol>
+<p class="tot"><svg class="ic"><use href="#i-clock"/></svg><span data-ar="المدة الإجمالية: 95 دقيقة" data-en="Total duration: 95 minutes"></span></p>
+</div>
+</section>
+
+<section id="join">
+<div class="sec"><i>04</i><h2 data-ar="كيف يتم الانضمام؟" data-en="How does joining work?"></h2></div>
+<ol class="st rv">
+<li><svg class="ic"><use href="#i-form"/></svg><b data-ar="قدّم طلبك" data-en="Apply"></b><p class="mut" data-ar="املأ النموذج أدناه بمعلومات فريقك وأهدافك." data-en="Fill in the form below with your team’s details and goals."></p></li>
+<li><svg class="ic"><use href="#i-search"/></svg><b data-ar="نراجع الطلب" data-en="We review"></b><p class="mut" data-ar="نتعرّف على الفريق ونتأكد من ملاءمة الطلب." data-en="We get to know your team and check the fit."></p></li>
+<li><svg class="ic"><use href="#i-mail"/></svg><b data-ar="تصلك الدعوة" data-en="You get the invitation"></b><p class="mut" data-ar="إن كان الطلب مناسبًا، نرسل بريدًا برابط الانضمام لمجموعة اللقاء." data-en="If it is a good fit, we email you the link to join the meeting group."></p></li>
+<li><svg class="ic"><use href="#i-users"/></svg><b data-ar="نلتقي وجاهيًا" data-en="We meet in person"></b><p class="mut" data-ar="في الموعد الذي نحدده معكم." data-en="On the date we set with you."></p></li>
+</ol>
+<div class="meet"><svg class="ic"><use href="#i-cal"/></svg><span id="mt"></span></div>
+</section>
+
+<section>
+<div class="about">
+<img class="rv" src="assets/robot.jpg" alt="NextStep AI" loading="lazy">
+<div class="rv">
+<h2 data-ar="من يدعوكم؟" data-en="Who is inviting you?"></h2>
+<p class="lead" style="margin:14px 0 20px" data-ar="NextStep AI منصة تساعد الطلبة الفلسطينيين على اختيار تخصصهم وجامعتهم ومسارهم المهني بالذكاء الاصطناعي، وتؤمن أن المجتمع التقني في غزة يكبر حين يعمل أفراده معًا." data-en="NextStep AI is a platform that helps Palestinian students choose their major, university, and career path with AI, and believes Gaza’s tech community grows when its people work together."></p>
+<a class="btn o" href="https://www.linkedin.com/in/nextstep-ai" target="_blank" rel="noopener"><svg class="ic"><use href="#i-in"/></svg><span data-ar="صفحة المنصة على لينكدإن" data-en="Platform page on LinkedIn"></span></a>
+</div>
+</div>
+</section>
+
+<section id="apply">
+<div class="sec"><i>05</i><h2 data-ar="طلب الانضمام" data-en="Application to join"></h2></div>
+<form id="f">
+<fieldset><legend data-ar="عن الفريق" data-en="About the team"></legend>
+<div class="g2">
+<label><span data-ar="اسم الفريق" data-en="Team name"></span><input name="team_name" maxlength="120" required></label>
+<label><span data-ar="اسم القائد" data-en="Team leader’s name"></span><input name="leader_name" maxlength="120" required></label>
+</div>
+<label><span data-ar="أعضاء الفريق" data-en="Team members"></span><small data-ar="اكتب اسم كل عضو في سطر مستقل" data-en="Write each member’s name on a separate line"></small><textarea name="members" rows="3" maxlength="1500" required></textarea></label>
+</fieldset>
+<fieldset><legend data-ar="التواصل والحسابات" data-en="Contact and accounts"></legend>
+<div class="g2">
+<label><span data-ar="رقم الجوال" data-en="Mobile number"></span><small data-ar="مع رمز الدولة، مثال: 970599000000+" data-en="With country code, e.g. +970599000000"></small><input name="phone" type="tel" dir="ltr" maxlength="30" required></label>
+<label><span data-ar="البريد الإلكتروني" data-en="Email"></span><small data-ar="إليه نرسل الدعوة عند قبول الطلب" data-en="We send the invitation here if accepted"></small><input name="email" type="email" dir="ltr" maxlength="160" required></label>
+<label><span data-ar="حساب فريقكم أو منصتكم" data-en="Your team or platform account"></span><small data-ar="رابط لينكدإن أو إنستغرام أو الموقع" data-en="LinkedIn, Instagram, or website link"></small><input name="platform_url" type="url" dir="ltr" maxlength="300" required></label>
+<label><span data-ar="حساب القائد على لينكدإن" data-en="Leader’s LinkedIn account"></span><small data-ar="رابط الصفحة الشخصية" data-en="Link to the personal profile"></small><input name="linkedin_url" type="url" dir="ltr" maxlength="300" required></label>
+</div>
+</fieldset>
+<fieldset><legend data-ar="لماذا تريد الانضمام؟" data-en="Why do you want to join?"></legend>
+<label><span data-ar="لماذا تريد الانضمام؟" data-en="Why do you want to join?"></span><textarea name="why_join" rows="3" maxlength="2000" required></textarea></label>
+<label><span data-ar="ما أهدافك من اللقاء؟" data-en="What are your goals for the meeting?"></span><textarea name="goals" rows="3" maxlength="2000" required></textarea></label>
+<label><span data-ar="أفكارك لسبل التعاون" data-en="Your ideas for collaboration"></span><small data-ar="اختياري: اقترح كيف يمكن للفرق أن تتعاون" data-en="Optional: suggest how teams could work together"></small><textarea name="collab_ideas" rows="3" maxlength="2000"></textarea></label>
+</fieldset>
+<label class="ck"><input type="checkbox" name="consent" required><span data-ar="أوافق على حفظ هذه البيانات لدى NextStep AI لمراجعة الطلب والتواصل معي." data-en="I agree that NextStep AI stores these details to review my application and contact me."></span></label>
+<div><button class="btn" type="submit"><span data-ar="أرسل الطلب" data-en="Submit application"></span><svg class="ic arr"><use href="#i-arrow"/></svg></button></div>
+<p id="msg" role="status"></p>
+</form>
+</section>
+</main>
+
+<footer><div class="w">
+<div class="fc">
+<img src="assets/founder.jpg" alt="م. أحمد وسام الحايك" onerror="this.style.visibility='hidden'">
+<div>
+<b data-ar="م. أحمد وسام الحايك — مؤسس NextStep" data-en="Eng. Ahmed Alhayek — Founder, NextStep AI"></b>
+<span data-ar="أدعوكم إلى هذه الطاولة، وهذه حساباتي وحسابات المنصة." data-en="I am inviting you to this table. These are my accounts and the platform’s."></span>
+<nav>
+<a href="https://www.linkedin.com/in/ahmedalhayek" target="_blank" rel="noopener"><svg class="ic"><use href="#i-in"/></svg><span data-ar="حسابي" data-en="My profile"></span></a>
+<a href="https://www.linkedin.com/in/nextstep-ai" target="_blank" rel="noopener"><svg class="ic"><use href="#i-in"/></svg>NextStep AI</a>
+<a href="https://instagram.com/nextstepai12" target="_blank" rel="noopener"><svg class="ic"><use href="#i-ig"/></svg>Instagram</a>
+</nav>
+</div>
+</div>
+<p class="cp">NextStep AI — Your Next Step. Smarter with AI.</p>
+</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+document.documentElement.classList.add('js');
+const SB_URL='YOUR_SUPABASE_URL',SB_KEY='YOUR_SUPABASE_ANON_KEY';
+const sb=SB_URL.startsWith('http')?supabase.createClient(SB_URL,SB_KEY):null;
+let L='ar',S={};
+const M={
+ ok:{ar:'وصلنا طلبكم. سنراجعه، وإن كان مناسبًا نرسل لكم بريدًا إلكترونيًا برابط الانضمام.',en:'We received your application. We will review it and, if it is a good fit, email you the link to join.'},
+ dup:{ar:'هذا البريد الإلكتروني مسجّل لدينا من قبل.',en:'This email is already registered with us.'},
+ err:{ar:'تعذّر إرسال الطلب. تحقق من الاتصال وحاول مرة أخرى.',en:'Could not send the application. Check your connection and try again.'},
+ none:{ar:'سيُعلن الموعد والمكان للفرق المقبولة عبر البريد الإلكتروني.',en:'The date and place will be announced to accepted teams by email.'}
+};
+function apply(){
+ document.documentElement.lang=L;document.documentElement.dir=L=='ar'?'rtl':'ltr';
+ document.getElementById('lb').textContent=L=='ar'?'EN':'AR';
+ document.querySelectorAll('[data-ar]').forEach(e=>e.textContent=e.dataset[L]);
+ document.getElementById('mt').textContent=S.meeting_at?(L=='ar'?'موعد اللقاء: ':'Meeting: ')+new Date(S.meeting_at).toLocaleString(L=='ar'?'ar':'en-GB',{dateStyle:'full',timeStyle:'short'})+(S.place?' — '+S.place:''):M.none[L];
+}
+function setL(l){L=l;apply()}
+apply();
+(async()=>{
+ if(sb){const{data}=await sb.from('rt_settings').select('*').eq('id',1).maybeSingle();if(data){S=data;apply()}}
+})();
+
+const f=document.getElementById('f'),msg=document.getElementById('msg');
+f.onsubmit=async e=>{
+ e.preventDefault();
+ const d={};
+ new FormData(f).forEach((v,k)=>d[k]=String(v).trim());
+ d.consent=f.consent.checked;
+ if(!d.collab_ideas)d.collab_ideas=null;
+ const{error}=sb?await sb.from('rt_applications').insert(d):{error:{}};
+ msg.textContent=M[error?(error.code=='23505'?'dup':'err'):'ok'][L];
+ msg.style.color=error?'#dc2626':'#059669';
+ if(!error)f.reset();
+};
+
+const nv=document.getElementById('nv');
+addEventListener('scroll',()=>nv.classList.toggle('s',scrollY>10),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+const fr=document.getElementById('fr');
+fr.parentNode.onpointermove=e=>{const r=fr.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;fr.style.transform='rotateY('+x*10+'deg) rotateX('+-y*10+'deg)'};
+fr.parentNode.onpointerleave=()=>fr.style.transform='';
+
+const cv=document.getElementById('bg'),cx=cv.getContext('2d'),dpr=devicePixelRatio||1,P=[],red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let W,H,mx=0,my=0,tx=0,ty=0,a=0;
+function rs(){W=cv.width=innerWidth*dpr;H=cv.height=innerHeight*dpr}
+rs();addEventListener('resize',rs);
+for(let i=0;i<70;i++)P.push({x:Math.random()*2-1,y:Math.random()*2-1,z:Math.random()*2-1,c:i%3?'37,99,235':'6,182,212'});
+addEventListener('pointermove',e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5});
+function draw(){
+ mx+=(tx-mx)*.05;my+=(ty-my)*.05;a+=.0012;
+ cx.clearRect(0,0,W,H);
+ const c=Math.cos(a+mx*2),s=Math.sin(a+mx*2),c2=Math.cos(my*1.2),s2=Math.sin(my*1.2),R=Math.min(W,H)*.85,Q=[],D=R*.2;
+ for(const p of P){const x=p.x*c-p.z*s;let z=p.x*s+p.z*c;const y=p.y*c2-z*s2;z=p.y*s2+z*c2;const k=1.6/(2.4+z);Q.push([W/2+x*R*k,H/2+y*R*k,k,p.c])}
+ for(let i=0;i<Q.length;i++)for(let j=i+1;j<Q.length;j++){
+  const d=Math.hypot(Q[i][0]-Q[j][0],Q[i][1]-Q[j][1]);
+  if(d<D){cx.strokeStyle='rgba(37,99,235,'+(1-d/D)*.25+')';cx.lineWidth=dpr;cx.beginPath();cx.moveTo(Q[i][0],Q[i][1]);cx.lineTo(Q[j][0],Q[j][1]);cx.stroke()}
+ }
+ for(const q of Q){cx.fillStyle='rgba('+q[3]+','+(.3+q[2]*.35)+')';cx.beginPath();cx.arc(q[0],q[1],q[2]*3.5*dpr,0,6.3);cx.fill()}
+ if(!red)requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
