@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>لوحة الإدارة | طاولة المنافسين</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1220;--blue:#2563EB;--cyan:#06B6D4;--gray:#F8FAFC}
+*{box-sizing:border-box;margin:0}
+body{font-family:Tajawal,system-ui,sans-serif;background:#fff;color:var(--navy);padding:20px;line-height:1.6}
+.w{max-width:1100px;margin:auto}
+.box{background:var(--gray);border:1px solid #e2e8f0;border-radius:20px;padding:20px;margin-bottom:18px}
+h1{font-size:1.5rem}h2{font-size:1.15rem}
+input,select,button{font:inherit;padding:10px 14px;border:1.5px solid #cbd5e1;border-radius:12px;background:#fff}
+input:focus,select:focus{outline:0;border-color:var(--blue)}
+button,.b{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff;border:0;font-weight:700;cursor:pointer;text-decoration:none;padding:8px 14px;border-radius:12px;display:inline-block}
+button.o{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.row label{display:grid;gap:4px;font-weight:700;font-size:.9rem}
+#lg{max-width:360px;margin:60px auto}
+#lg input{width:100%;margin-bottom:10px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{padding:10px;border-bottom:1px solid #e2e8f0;text-align:start;vertical-align:top}
+small{color:#64748b}
+a{color:var(--blue)}
+pre{white-space:pre-wrap;font:inherit}
+</style>
+</head>
+<body>
+<div class="w">
+<form class="box" id="lg">
+<h1>دخول الإدارة</h1><br>
+<input id="fe" type="email" placeholder="البريد الإلكتروني" dir="ltr" required>
+<input id="fp" type="password" placeholder="كلمة المرور" dir="ltr" required>
+<button type="submit">دخول</button>
+<p id="lm" style="color:#dc2626;margin-top:8px"></p>
+</form>
+
+<div id="ap" hidden>
+<div class="row" style="justify-content:space-between;margin-bottom:14px"><h1>طاولة المنافسين: لوحة الإدارة</h1><button class="o" id="lo">خروج</button></div>
+
+<div class="box">
+<h2>إعدادات اللقاء</h2><br>
+<div class="row">
+<label>الموعد (يظهر في الموقع)<input id="mt" type="datetime-local"></label>
+<label>المكان (يظهر في الموقع)<input id="pl"></label>
+<label>رابط مجموعة الواتساب (خاص بالإدارة)<input id="wu" dir="ltr" style="min-width:260px"></label>
+<button id="sv">حفظ</button><span id="sm"></span>
+</div>
+<small>رابط الواتساب لا يظهر في الموقع، ويُستخدم فقط في رسالة الدعوة للفرق المقبولة.</small>
+</div>
+
+<div class="box">
+<div class="row" style="justify-content:space-between;margin-bottom:12px">
+<h2>الطلبات (<span id="cnt">0</span>)</h2>
+<div class="row"><input id="sq" placeholder="بحث"><select id="sf"><option value="">كل الحالات</option></select><button class="o" id="ex">تصدير CSV</button></div>
+</div>
+<div class="tw"><table><thead><tr><th>الفريق</th><th>القائد</th><th>الحسابات</th><th>التفاصيل</th><th>الحالة</th><th>الدعوة</th></tr></thead><tbody id="tb"></tbody></table></div>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const SB_URL='YOUR_SUPABASE_URL',SB_KEY='YOUR_SUPABASE_ANON_KEY';
+const sb=supabase.createClient(SB_URL,SB_KEY);
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+const url=s=>/^https?:\/\//i.test(s||'')?esc(s):'#';
+const ST={new:'جديد',reviewing:'قيد المراجعة',accepted:'مقبول',declined:'غير مناسب'};
+let T=[],INV='',MT=null,PL='';
+$('sf').innerHTML+=Object.keys(ST).map(k=>`<option value="${k}">${ST[k]}</option>`).join('');
+
+sb.auth.getSession().then(({data})=>{if(data.session)show()});
+$('lg').onsubmit=async e=>{
+ e.preventDefault();
+ const{error}=await sb.auth.signInWithPassword({email:$('fe').value,password:$('fp').value});
+ if(error)$('lm').textContent='بيانات الدخول غير صحيحة.';else show();
+};
+$('lo').onclick=()=>sb.auth.signOut().then(()=>location.reload());
+
+async function show(){
+ $('lg').hidden=true;$('ap').hidden=false;
+ const[{data:s},{data:p}]=await Promise.all([sb.from('rt_settings').select('*').eq('id',1).maybeSingle(),sb.from('rt_private').select('*').eq('id',1).maybeSingle()]);
+ MT=s?.meeting_at||null;PL=s?.place||'';INV=p?.invite_link||'';
+ $('mt').value=MT?new Date(new Date(MT)-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,16):'';
+ $('pl').value=PL;$('wu').value=INV;
+ load();
+}
+$('sv').onclick=async()=>{
+ MT=$('mt').value?new Date($('mt').value).toISOString():null;PL=$('pl').value||'';INV=$('wu').value||'';
+ const[a,b]=await Promise.all([sb.from('rt_settings').upsert({id:1,meeting_at:MT,place:PL||null}),sb.from('rt_private').upsert({id:1,invite_link:INV||null})]);
+ $('sm').textContent=a.error||b.error?'تعذّر الحفظ':'تم الحفظ';
+ draw();
+};
+
+async function load(){
+ const{data}=await sb.from('rt_applications').select('*').order('created_at',{ascending:false});
+ T=data||[];draw();
+}
+function mail(t){
+ const when=MT?'\nالموعد: '+new Date(MT).toLocaleString('ar',{dateStyle:'full',timeStyle:'short'})+(PL?' — '+PL:''):'';
+ const body=`مرحبًا ${t.leader_name}،\n\nيسعدنا قبول فريق «${t.team_name}» في طاولة المنافسين.\nرابط الانضمام لمجموعة اللقاء:\n${INV}${when}\n\nم. أحمد وسام الحايك\nمؤسس NextStep`;
+ return 'mailto:'+encodeURIComponent(t.email)+'?subject='+encodeURIComponent('دعوة: طاولة المنافسين | NextStep AI')+'&body='+encodeURIComponent(body);
+}
+function draw(){
+ const q=$('sq').value.toLowerCase(),f=$('sf').value;
+ const R=T.filter(t=>(!f||t.status==f)&&JSON.stringify(t).toLowerCase().includes(q));
+ $('cnt').textContent=R.length;
+ $('tb').innerHTML=R.map(t=>`<tr>
+<td><b>${esc(t.team_name)}</b><br><small><pre>${esc(t.members)}</pre></small></td>
+<td>${esc(t.leader_name)}<br><a href="https://wa.me/${esc((t.phone||'').replace(/\D/g,''))}" target="_blank" rel="noopener">${esc(t.phone)}</a><br><small>${esc(t.email)}</small></td>
+<td><a href="${url(t.platform_url)}" target="_blank" rel="noopener">الفريق/المنصة</a><br><a href="${url(t.linkedin_url)}" target="_blank" rel="noopener">لينكدإن القائد</a></td>
+<td><details><summary>عرض</summary><b>لماذا ينضم:</b><pre>${esc(t.why_join)}</pre><b>الأهداف:</b><pre>${esc(t.goals)}</pre><b>أفكار التعاون:</b><pre>${esc(t.collab_ideas)}</pre><small>${esc(new Date(t.created_at).toLocaleString('ar'))}</small></details></td>
+<td><select onchange="setSt('${esc(t.id)}',this.value)">${Object.keys(ST).map(k=>`<option value="${k}"${k==t.status?' selected':''}>${ST[k]}</option>`).join('')}</select></td>
+<td>${t.status=='accepted'&&INV?`<a class="b" href="${mail(t)}">إرسال الدعوة</a>`:''}</td></tr>`).join('');
+}
+$('sq').oninput=draw;$('sf').onchange=draw;
+async function setSt(id,v){
+ await sb.from('rt_applications').update({status:v}).eq('id',id);
+ const t=T.find(x=>x.id==id);if(t)t.status=v;draw();
+}
+$('ex').onclick=()=>{
+ const k=Object.keys(T[0]||{});
+ const cell=x=>{let v=String(x??'');if(/^[=+\-@]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};
+ const c=[k.join(',')].concat(T.map(t=>k.map(h=>cell(t[h])).join(','))).join('\n');
+ const a=document.createElement('a');
+ a.href=URL.createObjectURL(new Blob(['\ufeff'+c],{type:'text/csv'}));a.download='round-table-applications.csv';a.click();
+};
+</script>
+</body>
+</html>

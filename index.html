@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>طاولة المنافسين | NextStep AI</title>
+<meta name="description" content="لقاء تعارفي وجاهي يجمع قادة المشاريع لبحث سبل التعاون | An in-person introductory meeting for project leaders">
+<link rel="icon" href="assets/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1220;--blue:#2563EB;--cyan:#06B6D4;--em:#10B981;--gray:#F8FAFC}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Manrope,Tajawal,system-ui,sans-serif;background:#fff;color:var(--navy);line-height:1.75}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1}
+a{color:var(--blue);font-weight:700}
+section{max-width:960px;margin:auto;padding:48px 20px}
+h1{font-size:clamp(2.4rem,9vw,4.6rem);line-height:1.2;font-weight:800;perspective:700px}
+.ln{display:block;animation:up .9s cubic-bezier(.2,.8,.2,1) both}
+.ln:nth-child(2){animation-delay:.25s}
+@keyframes up{from{opacity:0;transform:translateY(34px) rotateX(-45deg)}}
+h1 b{background:linear-gradient(90deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.7rem;font-weight:800;margin-bottom:14px;line-height:1.4}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:960px;margin:auto}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy);font-family:Manrope,sans-serif;font-size:1.35rem;font-weight:800;direction:ltr}
+.brand img{height:48px;width:48px;filter:drop-shadow(0 6px 10px rgba(37,99,235,.3))}
+.brand em{font-style:normal;color:var(--cyan)}
+.btn{display:inline-block;padding:13px 30px;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff;font:inherit;font-weight:700;text-decoration:none;border:0;cursor:pointer;box-shadow:0 10px 26px rgba(37,99,235,.3);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.o{background:#fff;color:var(--blue);box-shadow:inset 0 0 0 2px var(--blue)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.hero{text-align:center;padding-top:56px;padding-bottom:64px}
+.hero p{max-width:600px;margin:20px auto 28px;color:#334155;font-size:1.1rem}
+.hero .btn{margin:4px}
+.p{background:rgba(255,255,255,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid #e2e8f0;border-radius:22px;padding:24px}
+.lead{max-width:680px;color:#334155;margin-bottom:22px;font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{transition:transform .15s,box-shadow .3s}
+.card:hover{box-shadow:0 18px 40px rgba(37,99,235,.16)}
+.card i{font-style:normal;font-size:1.8rem;display:block}
+.card h3{margin:4px 0;font-weight:800}
+.yes h3{color:var(--em)}.no h3{color:#dc2626}
+ul{padding-inline-start:20px}li{margin:4px 0}
+.tl{list-style:none;padding:0;border-inline-start:3px solid var(--cyan);padding-inline-start:20px;display:grid;gap:12px}
+.tl b{display:inline-block;min-width:44px;color:var(--blue)}
+.tot{margin-top:14px;font-weight:700}
+.st{list-style:none;padding:0;counter-reset:s;display:grid;gap:12px}
+.st li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;margin:0}
+.st li:before{content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;display:grid;place-items:center}
+form{display:grid;gap:14px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+label{display:grid;gap:4px;font-weight:700;font-size:.92rem}
+label small{font-weight:500;color:#64748b}
+input,textarea{font:inherit;padding:11px 14px;border:1.5px solid #cbd5e1;border-radius:12px;background:#fff;width:100%}
+input:focus,textarea:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.18)}
+.ck{display:flex;gap:10px;align-items:flex-start;font-weight:500}
+.ck input{width:auto;margin-top:8px}
+#msg{font-weight:700}
+footer{background:rgba(248,250,252,.95);text-align:center;padding:40px 20px;border-top:1px solid #e2e8f0}
+.fc{display:inline-flex;gap:16px;align-items:center;background:#fff;border:1px solid #e2e8f0;border-radius:22px;padding:16px 22px;text-align:start;flex-wrap:wrap;justify-content:center}
+.fc img{width:92px;height:92px;border-radius:50%;object-fit:cover;background:#dbeafe;border:3px solid #fff;box-shadow:0 0 0 3px var(--cyan)}
+.fc nav{display:flex;gap:14px;flex-wrap:wrap;margin-top:4px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<div class="top">
+<a class="brand" href="#" aria-label="NextStep AI"><img src="assets/logo.png" alt=""><span>NextStep <em>AI</em></span></a>
+<button class="btn o" id="lb" onclick="setL(L=='ar'?'en':'ar')">EN</button>
+</div>
+
+<section class="hero">
+<h1><span class="ln" data-ar="من المنافسة..." data-en="From competition..."></span><span class="ln"><b data-ar="إلى الطاولة." data-en="to the table."></b></span></h1>
+<p data-ar="لقاء تعارفي وجاهي يجمع قادة المشاريع التي خاضت تجربة الهاكاثون، لنتعرّف على بعضنا، ونبحث سبل التعاون، ونخرج من غزة إلى العالم بصوت واحد قوي وملهم." data-en="An in-person introductory meeting for the leaders of projects that went through the hackathon: to get to know each other, explore collaboration, and take Gaza to the world with one strong, inspiring voice."></p>
+<a class="btn" href="#apply" data-ar="قدّم طلب الانضمام" data-en="Apply to join"></a>
+<a class="btn o" href="#why" data-ar="لماذا هذا اللقاء؟" data-en="Why this meeting?"></a>
+</section>
+
+<section id="why">
+<h2 data-ar="لماذا دُعيتم إلى هذه الطاولة؟" data-en="Why were you invited to this table?"></h2>
+<p class="lead" data-ar="كل فريق منكم بنى مشروعًا حقيقيًا في ظروف صعبة، وكل مشروع يملك ما يحتاجه غيره: مهارة، أو خبرة، أو علاقة، أو فكرة. لذلك نجمعكم لتتعارفوا وجهًا لوجه، لا لنقارن مشروعًا بآخر." data-en="Each of you built a real project under difficult conditions, and every project holds something another one needs: a skill, an experience, a connection, or an idea. So we bring you together to meet face to face, not to compare one project with another."></p>
+<div class="grid">
+<div class="p card"><i>🤝</i><h3 data-ar="تعارف حقيقي" data-en="A real introduction"></h3><p data-ar="تتعرّف القيادات على بعضها: من أنتم، وماذا بنيتم، وما الذي يشغلكم." data-en="Leaders get to know each other: who you are, what you built, and what drives you."></p></div>
+<div class="p card"><i>🧩</i><h3 data-ar="سبل التعاون" data-en="Ways to collaborate"></h3><p data-ar="نبحث معًا أين يكمّل مشروعٌ مشروعًا آخر، وما الذي يمكن أن نبنيه سويًا." data-en="Together we look for where one project completes another, and what we could build side by side."></p></div>
+<div class="p card"><i>🌍</i><h3 data-ar="صوت واحد من غزة" data-en="One voice from Gaza"></h3><p data-ar="حين نتعاون، يصبح صوتنا أقوى عند المجتمع والطلبة والشركاء وأمام العالم." data-en="When we collaborate, our voice grows stronger with the community, students, partners, and the world."></p></div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="p yes"><h3 data-ar="ما هو اللقاء" data-en="What the meeting is"></h3><ul>
+<li data-ar="لقاء تعارفي بين قادة الفرق" data-en="An introductory meeting between team leaders"></li>
+<li data-ar="مساحة لتبادل التجارب والدروس" data-en="A space to share experiences and lessons"></li>
+<li data-ar="بحث عملي في فرص التعاون" data-en="A practical search for collaboration opportunities"></li>
+<li data-ar="بداية علاقة تستمر بعد اللقاء" data-en="The start of a relationship that lasts beyond the meeting"></li></ul></div>
+<div class="p no"><h3 data-ar="ما ليس هو" data-en="What it is not"></h3><ul>
+<li data-ar="منافسة جديدة" data-en="A new competition"></li>
+<li data-ar="عرض تسويقي لمشروع" data-en="A sales pitch for a project"></li>
+<li data-ar="تقييم أو ترتيب للفرق" data-en="A ranking or evaluation of teams"></li>
+<li data-ar="مطالبة بكشف أسرار المشروع" data-en="A request to reveal project secrets"></li></ul></div>
+</div>
+</section>
+
+<section>
+<h2 data-ar="برنامج اللقاء" data-en="Meeting program"></h2>
+<div class="p">
+<ol class="tl">
+<li><b>5′</b><span data-ar="الافتتاح وتوضيح الفكرة" data-en="Opening and the idea behind the meeting"></span></li>
+<li><b>10′</b><span data-ar="التعارف بين القادة" data-en="Introductions between leaders"></span></li>
+<li><b>20′</b><span data-ar="حكاية التجربة: كيف بدأ كل مشروع" data-en="The story: how each project began"></span></li>
+<li><b>25′</b><span data-ar="التحديات والدروس التي لا تظهر للجمهور" data-en="Challenges and lessons the public never sees"></span></li>
+<li><b>20′</b><span data-ar="من المنافسة إلى التعاون: أين نتكامل" data-en="From competition to collaboration: where we fit together"></span></li>
+<li><b>10′</b><span data-ar="التوصيات والخطوات التالية" data-en="Recommendations and next steps"></span></li>
+<li><b>5′</b><span data-ar="الختام" data-en="Closing"></span></li>
+</ol>
+<p class="tot" data-ar="المدة الإجمالية: 95 دقيقة" data-en="Total duration: 95 minutes"></p>
+</div>
+</section>
+
+<section>
+<h2 data-ar="كيف يتم الانضمام؟" data-en="How does joining work?"></h2>
+<div class="p">
+<ol class="st">
+<li><span data-ar="تقدّم طلبك من النموذج أدناه." data-en="You submit your application in the form below."></span></li>
+<li><span data-ar="نراجع الطلب ونتعرّف على الفريق." data-en="We review the application and get to know your team."></span></li>
+<li><span data-ar="إن كان الطلب مناسبًا، يصلك بريد إلكتروني برابط الانضمام لمجموعة اللقاء." data-en="If it is a good fit, you receive an email with the link to join the meeting group."></span></li>
+<li><span data-ar="نلتقي وجاهيًا في الموعد الذي نحدده معكم." data-en="We meet in person on the date we set with you."></span></li>
+</ol>
+<p class="tot" id="mt"></p>
+</div>
+</section>
+
+<section id="apply">
+<h2 data-ar="طلب الانضمام" data-en="Application to join"></h2>
+<form class="p" id="f">
+<div class="two">
+<label><span data-ar="اسم الفريق" data-en="Team name"></span><input name="team_name" maxlength="120" required></label>
+<label><span data-ar="اسم القائد" data-en="Team leader’s name"></span><input name="leader_name" maxlength="120" required></label>
+</div>
+<label><span data-ar="أعضاء الفريق" data-en="Team members"></span><small data-ar="اكتب اسم كل عضو في سطر مستقل" data-en="Write each member’s name on a separate line"></small><textarea name="members" rows="3" maxlength="1500" required></textarea></label>
+<div class="two">
+<label><span data-ar="رقم الجوال" data-en="Mobile number"></span><small data-ar="مع رمز الدولة، مثال: 970599000000+" data-en="With country code, e.g. +970599000000"></small><input name="phone" type="tel" dir="ltr" maxlength="30" required></label>
+<label><span data-ar="البريد الإلكتروني" data-en="Email"></span><small data-ar="إليه نرسل الدعوة عند قبول الطلب" data-en="We send the invitation here if accepted"></small><input name="email" type="email" dir="ltr" maxlength="160" required></label>
+<label><span data-ar="حساب فريقكم أو منصتكم" data-en="Your team or platform account"></span><small data-ar="رابط لينكدإن أو إنستغرام أو الموقع" data-en="LinkedIn, Instagram, or website link"></small><input name="platform_url" type="url" dir="ltr" maxlength="300" required></label>
+<label><span data-ar="حساب القائد على لينكدإن" data-en="Leader’s LinkedIn account"></span><small data-ar="رابط الصفحة الشخصية" data-en="Link to the personal profile"></small><input name="linkedin_url" type="url" dir="ltr" maxlength="300" required></label>
+</div>
+<label><span data-ar="لماذا تريد الانضمام؟" data-en="Why do you want to join?"></span><textarea name="why_join" rows="3" maxlength="2000" required></textarea></label>
+<label><span data-ar="ما أهدافك من اللقاء؟" data-en="What are your goals for the meeting?"></span><textarea name="goals" rows="3" maxlength="2000" required></textarea></label>
+<label><span data-ar="أفكارك لسبل التعاون" data-en="Your ideas for collaboration"></span><small data-ar="اختياري: اقترح كيف يمكن للفرق أن تتعاون" data-en="Optional: suggest how teams could work together"></small><textarea name="collab_ideas" rows="3" maxlength="2000"></textarea></label>
+<label class="ck"><input type="checkbox" name="consent" required><span data-ar="أوافق على حفظ هذه البيانات لدى NextStep AI لمراجعة الطلب والتواصل معي." data-en="I agree that NextStep AI stores these details to review my application and contact me."></span></label>
+<button class="btn" type="submit" data-ar="أرسل الطلب" data-en="Submit application"></button>
+<p id="msg" role="status"></p>
+</form>
+</section>
+
+<footer>
+<div class="fc">
+<img src="assets/founder.jpg" alt="م. أحمد وسام الحايك" onerror="this.style.visibility='hidden'">
+<div>
+<b data-ar="م. أحمد وسام الحايك — مؤسس NextStep" data-en="Eng. Ahmed Alhayek — Founder, NextStep AI"></b>
+<nav>
+<a href="https://www.linkedin.com/in/ahmedalhayek" target="_blank" rel="noopener" data-ar="لينكدإن: حسابي" data-en="LinkedIn: my profile"></a>
+<a href="https://www.linkedin.com/in/nextstep-ai" target="_blank" rel="noopener" data-ar="لينكدإن: NextStep AI" data-en="LinkedIn: NextStep AI"></a>
+<a href="https://instagram.com/nextstepai12" target="_blank" rel="noopener">Instagram</a>
+</nav>
+</div>
+</div>
+<p style="margin-top:16px"><small>NextStep AI — Your Next Step. Smarter with AI.</small></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const SB_URL='YOUR_SUPABASE_URL',SB_KEY='YOUR_SUPABASE_ANON_KEY';
+const sb=SB_URL.startsWith('http')?supabase.createClient(SB_URL,SB_KEY):null;
+let L='ar',S={};
+const M={
+ ok:{ar:'وصلنا طلبكم. سنراجعه، وإن كان مناسبًا نرسل لكم بريدًا إلكترونيًا برابط الانضمام.',en:'We received your application. We will review it and, if it is a good fit, email you the link to join.'},
+ dup:{ar:'هذا البريد الإلكتروني مسجّل لدينا من قبل.',en:'This email is already registered with us.'},
+ err:{ar:'تعذّر إرسال الطلب. تحقق من الاتصال وحاول مرة أخرى.',en:'Could not send the application. Check your connection and try again.'},
+ none:{ar:'سيُعلن الموعد والمكان للفرق المقبولة عبر البريد الإلكتروني.',en:'The date and place will be announced to accepted teams by email.'}
+};
+function apply(){
+ document.documentElement.lang=L;document.documentElement.dir=L=='ar'?'rtl':'ltr';
+ document.getElementById('lb').textContent=L=='ar'?'EN':'AR';
+ document.querySelectorAll('[data-ar]').forEach(e=>e.textContent=e.dataset[L]);
+ document.getElementById('mt').textContent=S.meeting_at?(L=='ar'?'موعد اللقاء: ':'Meeting: ')+new Date(S.meeting_at).toLocaleString(L=='ar'?'ar':'en-GB',{dateStyle:'full',timeStyle:'short'})+(S.place?' — '+S.place:''):M.none[L];
+}
+function setL(l){L=l;apply()}
+(async()=>{
+ if(sb){const{data}=await sb.from('rt_settings').select('*').eq('id',1).maybeSingle();if(data)S=data}
+ apply();
+})();
+apply();
+
+const f=document.getElementById('f'),msg=document.getElementById('msg');
+f.onsubmit=async e=>{
+ e.preventDefault();
+ const d={};
+ new FormData(f).forEach((v,k)=>d[k]=String(v).trim());
+ d.consent=f.consent.checked;
+ if(!d.collab_ideas)d.collab_ideas=null;
+ const{error}=sb?await sb.from('rt_applications').insert(d):{error:{}};
+ msg.textContent=M[error?(error.code=='23505'?'dup':'err'):'ok'][L];
+ msg.style.color=error?'#dc2626':'#059669';
+ if(!error)f.reset();
+};
+
+const cv=document.getElementById('bg'),cx=cv.getContext('2d'),dpr=devicePixelRatio||1,P=[],red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let W,H,mx=0,my=0,tx=0,ty=0,a=0;
+function rs(){W=cv.width=innerWidth*dpr;H=cv.height=innerHeight*dpr}
+rs();addEventListener('resize',rs);
+for(let i=0;i<90;i++)P.push({x:Math.random()*2-1,y:Math.random()*2-1,z:Math.random()*2-1,c:i%3?'37,99,235':'6,182,212'});
+addEventListener('pointermove',e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5});
+function fr(){
+ mx+=(tx-mx)*.05;my+=(ty-my)*.05;a+=.0014;
+ cx.clearRect(0,0,W,H);
+ const c=Math.cos(a+mx*2),s=Math.sin(a+mx*2),c2=Math.cos(my*1.2),s2=Math.sin(my*1.2),R=Math.min(W,H)*.8,Q=[];
+ for(const p of P){
+  const x=p.x*c-p.z*s;let z=p.x*s+p.z*c;const y=p.y*c2-z*s2;z=p.y*s2+z*c2;
+  const k=1.6/(2.4+z);Q.push([W/2+x*R*k,H/2+y*R*k,k,p.c]);
+ }
+ const D=R*.2;
+ for(let i=0;i<Q.length;i++)for(let j=i+1;j<Q.length;j++){
+  const d=Math.hypot(Q[i][0]-Q[j][0],Q[i][1]-Q[j][1]);
+  if(d<D){cx.strokeStyle='rgba(37,99,235,'+(1-d/D)*.25+')';cx.lineWidth=dpr;cx.beginPath();cx.moveTo(Q[i][0],Q[i][1]);cx.lineTo(Q[j][0],Q[j][1]);cx.stroke()}
+ }
+ for(const q of Q){cx.fillStyle='rgba('+q[3]+','+(.3+q[2]*.35)+')';cx.beginPath();cx.arc(q[0],q[1],q[2]*4*dpr,0,6.3);cx.fill()}
+ if(!red)requestAnimationFrame(fr);
+}
+fr();
+document.querySelectorAll('.card').forEach(c=>{
+ c.onpointermove=e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(600px) rotateY('+x*10+'deg) rotateX('+-y*10+'deg)'};
+ c.onpointerleave=()=>c.style.transform='';
+});
+</script>
+</body>
+</html>
