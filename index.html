@@ -105,6 +105,9 @@ footer{background:var(--ink);color:#cbd5e1;padding:56px 0 34px}
 @keyframes dr{to{stroke-dashoffset:0}}
 @keyframes pop{from{opacity:0;transform:scale(.88) translateY(14px)}}
 @keyframes fi{from{opacity:0}}
+.cm{margin:16px 0 4px;padding:16px 18px;border:1px solid var(--line);border-radius:18px;background:var(--bg)}
+.cm p{margin:0 0 10px;font-weight:700}
+.mc .cm .btn{margin-top:0;background:#16a34a}.mc .cm .btn:hover{background:#15803d;box-shadow:0 10px 22px rgba(22,163,74,.3)}
 html.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}html.js .rv.in{opacity:1;transform:none}
 @media(max-width:820px){.nl{display:none}.hero,.about,.two,.three,.st,.g2{grid-template-columns:1fr}.three>div{border:0;padding:0 0 22px}.stats{gap:22px}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition:none!important}}
@@ -226,6 +229,8 @@ html.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transfor
 <label><span data-ar="اسم القائد" data-en="Team leader’s name"></span><input name="leader_name" maxlength="120" required></label>
 </div>
 <label><span data-ar="أعضاء الفريق" data-en="Team members"></span><small data-ar="اكتب اسم كل عضو في سطر مستقل" data-en="Write each member’s name on a separate line"></small><textarea name="members" rows="3" maxlength="1500" required></textarea></label>
+<label><span data-ar="نبذة عن المشروع" data-en="About the project"></span><small data-ar="في بضعة أسطر: ما المشكلة التي يحلها المشروع، ولمن؟" data-en="In a few lines: what problem does it solve, and for whom?"></small><textarea name="project_summary" rows="3" maxlength="1500" required></textarea></label>
+<label><span data-ar="رابط المشروع" data-en="Project link"></span><small data-ar="اختياري: موقع، أو تطبيق، أو عرض، أو مستودع" data-en="Optional: website, app, demo, or repository"></small><input name="project_url" type="url" dir="ltr" maxlength="300"></label>
 </fieldset>
 <fieldset><legend data-ar="التواصل والحسابات" data-en="Contact and accounts"></legend>
 <div class="g2">
@@ -270,6 +275,7 @@ html.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transfor
 <p class="tm" id="okt"></p>
 <p class="mut" data-ar="شكرًا لاهتمامك بالانضمام إلى الطاولة. سنراجع طلب فريقك، وإن كان مناسبًا نرسل إليك بريدًا إلكترونيًا برابط الانضمام." data-en="Thank you for your interest in joining the table. We will review your team’s application and, if it is a good fit, email you the link to join."></p>
 <p class="mut"><span data-ar="سنراسلك على: " data-en="We will email you at: "></span><b id="oke" dir="ltr"></b></p>
+<div class="cm"><p data-ar="انضم إلى مجتمع NextStep AI لتشاركنا الفعاليات والورش القادمة." data-en="Join the NextStep AI community to take part in our upcoming events and workshops."></p><a class="btn" href="https://chat.whatsapp.com/JEzuy1JozEv0ubOZ74QXQs" target="_blank" rel="noopener noreferrer" data-ar="انضم إلى المجتمع" data-en="Join the community"></a><small style="display:block;margin-top:8px" data-ar="هذا رابط المجتمع العام. أما مجموعة اللقاء فتصلك بالبريد إن قُبل طلبك." data-en="This is the general community link. The meeting group link is emailed to you if your application is accepted."></small></div>
 <button class="btn" id="moc" type="button" data-ar="حسنًا" data-en="Got it"></button>
 </div></div>
 
@@ -304,6 +310,7 @@ f.onsubmit=async e=>{
  new FormData(f).forEach((v,k)=>d[k]=String(v).trim());
  d.consent=f.consent.checked;
  if(!d.collab_ideas)d.collab_ideas=null;
+ if(!d.project_url)d.project_url=null;
  const bt=f.querySelector('button[type=submit]');bt.disabled=true;
  const{error}=sb?await sb.from('rt_applications').insert(d):{error:{}};
  bt.disabled=false;
