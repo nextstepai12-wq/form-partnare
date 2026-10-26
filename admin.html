@@ -232,7 +232,7 @@ $('sq').oninput=draw;$('so').onchange=draw;
 const mem=t=>(t.members||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
 const ago=d=>{const s=(new Date(d)-Date.now())/1e3,a=Math.abs(s),[u,k]=a<3600?[60,'minute']:a<86400?[3600,'hour']:[86400,'day'];return new Intl.RelativeTimeFormat('ar',{numeric:'auto'}).format(Math.round(s/u),k)};
 const inv=t=>`مرحبًا ${t.leader_name}،\n\nيسعدنا قبول فريق «${t.team_name}» في طاولة صُنّاع المستقبل.\nرابط الانضمام لمجموعة اللقاء:\n${INV}${MT?'\nالموعد: '+fmt(MT,{dateStyle:'full',timeStyle:'short'})+(PL?' — '+PL:''):''}\n\nم. أحمد وسام الحايك\nمؤسس NextStep`;
-const sum=t=>`فريق: ${t.team_name}\nالقائد: ${t.leader_name}\nالجوال: ${t.phone}\nالبريد: ${t.email}\nحساب الفريق: ${t.platform_url}\nلينكدإن القائد: ${t.linkedin_url}\n\nالأعضاء:\n${t.members}\n\nلماذا ينضم:\n${t.why_join}\n\nأهدافه من اللقاء:\n${t.goals}\n\nأفكاره للتعاون:\n${t.collab_ideas||'—'}\n\nالحالة: ${ST[t.status]||t.status}`;
+const sum=t=>`فريق: ${t.team_name}\nالقائد: ${t.leader_name}\nالجوال: ${t.phone}\nالبريد: ${t.email}\nحساب الفريق: ${t.platform_url}\nلينكدإن القائد: ${t.linkedin_url}\nرابط المشروع: ${t.project_url||'—'}\n\nنبذة عن المشروع:\n${t.project_summary||'—'}\n\nالأعضاء:\n${t.members}\n\nلماذا ينضم:\n${t.why_join}\n\nأهدافه من اللقاء:\n${t.goals}\n\nأفكاره للتعاون:\n${t.collab_ideas||'—'}\n\nالحالة: ${ST[t.status]||t.status}`;
 function openD(id){
  const t=T.find(x=>x.id==id);if(!t)return;SEL=id;
  const R=view(),i=R.findIndex(x=>x.id==id),m=mem(t),ok=t.status=='accepted';
@@ -240,10 +240,10 @@ function openD(id){
  const ic=(l,v,d)=>`<div class="ic"><small>${l}</small><b${d?' dir="ltr"':''}>${v}</b></div>`;
  const qt=(h,b)=>`<div class="sec"><h3>${h}</h3>${b?`<blockquote>${esc(b)}</blockquote>`:'<p class="none">لم يُذكر</p>'}</div>`;
  $('dr').innerHTML=`<div class="dh"><div class="who"><span class="av big">${esc((t.team_name||'?').trim().charAt(0))}</span><div><h2>${esc(t.team_name)}</h2><span class="bd s-${esc(t.status)}">${esc(ST[t.status]||t.status)}</span> <small>وصل ${esc(ago(t.created_at))} · ${esc(fmt(t.created_at))}</small></div></div><button class="ghost" data-a="close">إغلاق</button></div>
-<nav class="qa">${qb('https://wa.me/'+esc((t.phone||'').replace(/\D/g,'')),'واتساب')}${qb('mailto:'+esc(t.email),'بريد')}${qb(url(t.linkedin_url),'لينكدإن القائد')}${qb(url(t.platform_url),'حساب الفريق')}</nav>
+<nav class="qa">${qb('https://wa.me/'+esc((t.phone||'').replace(/\D/g,'')),'واتساب')}${qb('mailto:'+esc(t.email),'بريد')}${qb(url(t.linkedin_url),'لينكدإن القائد')}${qb(url(t.platform_url),'حساب الفريق')}${qb(url(t.project_url),'رابط المشروع')}</nav>
 <div class="ig">${ic('القائد',esc(t.leader_name))}${ic('عدد الأعضاء',m.length)}${ic('الجوال',esc(t.phone),1)}${ic('البريد',esc(t.email),1)}</div>
 <div class="sec"><h3>أعضاء الفريق</h3><div class="chips">${m.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div>
-${qt('لماذا يريد الانضمام؟',t.why_join)}${qt('أهدافه من اللقاء',t.goals)}${qt('أفكاره لسبل التعاون',t.collab_ideas)}
+${qt('نبذة عن المشروع',t.project_summary)}${qt('لماذا يريد الانضمام؟',t.why_join)}${qt('أهدافه من اللقاء',t.goals)}${qt('أفكاره لسبل التعاون',t.collab_ideas)}
 <div class="sec"><h3>الحالة</h3><div class="sg">${Object.keys(ST).map(k=>`<button data-a="st" data-k="${k}" class="${t.status==k?'on':''}">${ST[k]}</button>`).join('')}</div></div>
 <div class="sec"><h3>ملاحظات الإدارة (خاصة بك، تُحفظ عند الخروج من الحقل)</h3><textarea id="nt" maxlength="2000">${esc(t.admin_note)}</textarea></div>
 <div class="act">${ok&&INV?`<a class="btn" href="mailto:${encodeURIComponent(t.email)}?subject=${encodeURIComponent('دعوة: طاولة صُنّاع المستقبل | NextStep AI')}&body=${encodeURIComponent(inv(t))}">إرسال الدعوة بالبريد</a><button class="ghost" data-a="copy">نسخ نص الدعوة</button>`:ok?'<small>أضف رابط مجموعة الواتساب من إعدادات اللقاء ليظهر زر الدعوة.</small>':''}<button class="ghost" data-a="sum">نسخ ملخص الطلب</button><button class="ghost" data-a="print">طباعة بطاقة الطلب</button><button class="ghost danger" data-a="del">حذف الطلب</button></div>
