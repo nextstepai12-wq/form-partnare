@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>طاولة المنافسين | NextStep AI</title>
-<meta name="description" content="لقاء تعارفي وجاهي يجمع قادة المشاريع لبحث سبل التعاون | An in-person introductory meeting for project leaders">
+<title>طاولة صُنّاع المستقبل | NextStep AI</title>
+<meta name="description" content="لقاء يجمع مؤسسي الفرق وأصحاب الأفكار لبحث سبل التعاون | A meeting for team founders and idea owners to explore collaboration">
 <link rel="icon" href="assets/logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
@@ -45,7 +45,7 @@ nav.t .w{display:flex;align-items:center;justify-content:space-between;height:68
 .stats b{display:block;font:800 2rem/1.1 Manrope,sans-serif;color:var(--ink)}.stats span{color:var(--mut);font-size:.9rem}
 .vis{perspective:900px}
 .frame{border-radius:28px;background:var(--bg);border:1px solid var(--line);padding:10px;transition:transform .2s ease-out;box-shadow:0 30px 60px rgba(11,18,32,.1)}
-.frame img{width:100%;display:block;border-radius:20px;mix-blend-mode:multiply}
+.frame img{width:100%;display:block;border-radius:20px}
 .three{display:grid;grid-template-columns:repeat(3,1fr)}
 .three>div{padding:6px 26px;border-inline-start:1px solid var(--line)}.three>div:first-child{border:0;padding-inline-start:0}
 .ico{width:52px;height:52px;border-radius:14px;background:#EAF1FF;color:var(--blue);display:grid;place-items:center;margin-bottom:14px;transition:background .3s,color .3s,transform .3s}
@@ -93,6 +93,18 @@ footer{background:var(--ink);color:#cbd5e1;padding:56px 0 34px}
 .fc a{display:inline-flex;gap:8px;align-items:center;color:#fff;font-weight:500;text-decoration:none;padding:8px 14px;border-radius:10px;background:rgba(255,255,255,.08);transition:background .2s}
 .fc a:hover{background:var(--blue)}
 .cp{margin-top:34px;padding-top:20px;border-top:1px solid #1e293b;font-size:.85rem;color:#94a3b8}
+.mo{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(11,18,32,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:fi .25s both}
+.mo[hidden]{display:none}
+.mc{background:#fff;border-radius:28px;padding:38px 32px 30px;max-width:460px;width:100%;text-align:center;box-shadow:0 40px 90px rgba(11,18,32,.35);animation:pop .5s cubic-bezier(.2,1.2,.3,1) both}
+.mc h3{font-size:1.5rem;margin:16px 0 8px}
+.mc .tm{font-weight:800;color:var(--blue);margin-bottom:10px}
+.mc p{margin-bottom:8px}
+.mc .btn{margin-top:16px;min-width:170px}
+.ok .c1{stroke-dasharray:240;stroke-dashoffset:240;animation:dr .6s .15s forwards}
+.ok .c2{stroke-dasharray:60;stroke-dashoffset:60;animation:dr .4s .65s forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+@keyframes pop{from{opacity:0;transform:scale(.88) translateY(14px)}}
+@keyframes fi{from{opacity:0}}
 html.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}html.js .rv.in{opacity:1;transform:none}
 @media(max-width:820px){.nl{display:none}.hero,.about,.two,.three,.st,.g2{grid-template-columns:1fr}.three>div{border:0;padding:0 0 22px}.stats{gap:22px}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition:none!important}}
@@ -127,8 +139,8 @@ html.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transfor
 <section class="hero">
 <div>
 <span class="tag"><svg class="ic"><use href="#i-pin"/></svg><span data-ar="لقاء تعارفي وجاهي · غزة" data-en="In-person introductory meeting · Gaza"></span></span>
-<h1><span class="ln" data-ar="من المنافسة..." data-en="From competition..."></span><span class="ln" data-ar="إلى الطاولة." data-en="to the table."></span></h1>
-<p data-ar="لقاء يجمع قادة المشاريع التي خاضت تجربة الهاكاثون، لنتعرّف على بعضنا، ونبحث سبل التعاون، ونخرج من غزة إلى العالم بصوت واحد قوي وملهم." data-en="A meeting for the leaders of projects that went through the hackathon: to get to know each other, explore collaboration, and take Gaza to the world with one strong, inspiring voice."></p>
+<h1><span class="ln" data-ar="طاولة صُنّاع" data-en="Future Makers"></span><span class="ln" data-ar="المستقبل" data-en="Table"></span></h1>
+<p data-ar="لقاء يجمع مؤسسي الفرق وأصحاب الأفكار، لنتعرّف على بعضنا، ونبحث سبل التعاون، ونخرج من غزة إلى العالم بصوت واحد قوي وملهم." data-en="A meeting that brings team founders and idea owners together, to get to know each other, explore collaboration, and take Gaza to the world with one strong, inspiring voice."></p>
 <a class="btn" href="#apply"><span data-ar="قدّم طلب الانضمام" data-en="Apply to join"></span><svg class="ic arr"><use href="#i-arrow"/></svg></a>
 <a class="btn o" href="#idea"><span data-ar="لماذا هذا اللقاء؟" data-en="Why this meeting?"></span></a>
 <div class="stats">
@@ -137,7 +149,7 @@ html.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transfor
 <div><b>1</b><span data-ar="طاولة واحدة" data-en="shared table"></span></div>
 </div>
 </div>
-<div class="vis"><div class="frame" id="fr"><img src="assets/table.jpg" alt="قادة المشاريع حول طاولة واحدة | Project leaders around one table"></div></div>
+<div class="vis"><div class="frame" id="fr"><img src="assets/table.jpg" alt="مؤسسو الفرق حول طاولة واحدة | Team founders around one table"></div></div>
 </section>
 
 <section id="idea">
@@ -251,6 +263,16 @@ html.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transfor
 <p class="cp">NextStep AI — Your Next Step. Smarter with AI.</p>
 </div></footer>
 
+<div class="mo" id="mo" role="dialog" aria-modal="true" aria-labelledby="mt1" hidden>
+<div class="mc">
+<svg class="ok" width="88" height="88" viewBox="0 0 84 84" aria-hidden="true"><circle class="c1" cx="42" cy="42" r="38" fill="none" stroke="#10B981" stroke-width="4"/><path class="c2" d="M26 43l11 11 21-23" fill="none" stroke="#10B981" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<h3 id="mt1" data-ar="تم استقبال طلبك بنجاح" data-en="Your application has been received"></h3>
+<p class="tm" id="okt"></p>
+<p class="mut" data-ar="شكرًا لاهتمامك بالانضمام إلى الطاولة. سنراجع طلب فريقك، وإن كان مناسبًا نرسل إليك بريدًا إلكترونيًا برابط الانضمام." data-en="Thank you for your interest in joining the table. We will review your team’s application and, if it is a good fit, email you the link to join."></p>
+<p class="mut"><span data-ar="سنراسلك على: " data-en="We will email you at: "></span><b id="oke" dir="ltr"></b></p>
+<button class="btn" id="moc" type="button" data-ar="حسنًا" data-en="Got it"></button>
+</div></div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 document.documentElement.classList.add('js');
@@ -282,11 +304,22 @@ f.onsubmit=async e=>{
  new FormData(f).forEach((v,k)=>d[k]=String(v).trim());
  d.consent=f.consent.checked;
  if(!d.collab_ideas)d.collab_ideas=null;
+ const bt=f.querySelector('button[type=submit]');bt.disabled=true;
  const{error}=sb?await sb.from('rt_applications').insert(d):{error:{}};
- msg.textContent=M[error?(error.code=='23505'?'dup':'err'):'ok'][L];
- msg.style.color=error?'#dc2626':'#059669';
- if(!error)f.reset();
+ bt.disabled=false;
+ if(error){msg.textContent=M[error.code=='23505'?'dup':'err'][L];msg.style.color='#dc2626';return}
+ msg.textContent='';f.reset();openOk(d.team_name,d.email);
 };
+const mo=document.getElementById('mo');
+function openOk(name,email){
+ document.getElementById('okt').textContent=(L=='ar'?'الفريق: ':'Team: ')+name;
+ document.getElementById('oke').textContent=email;
+ mo.hidden=false;document.body.style.overflow='hidden';document.getElementById('moc').focus();
+}
+function closeOk(){mo.hidden=true;document.body.style.overflow='';scrollTo({top:0,behavior:'smooth'})}
+document.getElementById('moc').onclick=closeOk;
+mo.onclick=e=>{if(e.target==mo)closeOk()};
+addEventListener('keydown',e=>{if(e.key=='Escape'&&!mo.hidden)closeOk()});
 
 const nv=document.getElementById('nv');
 addEventListener('scroll',()=>nv.classList.toggle('s',scrollY>10),{passive:true});
