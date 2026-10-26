@@ -72,6 +72,20 @@ h2{font-size:1.15rem;font-weight:800;margin-bottom:14px}
 .ts{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 24px;border-radius:14px;z-index:40;font-weight:700;box-shadow:0 14px 34px rgba(0,0,0,.3)}
 .ts.bad{background:#dc2626}
 .ft{text-align:center;color:var(--mut);font-size:.85rem;padding:0 20px 30px}
+textarea{font:inherit;padding:11px 14px;border:1.5px solid #cbd5e1;border-radius:12px;background:#fff;width:100%;resize:vertical;min-height:90px}
+textarea:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px rgba(37,99,235,.14)}
+.who{display:flex;gap:14px;align-items:center}.av.big{width:58px;height:58px;font-size:1.5rem;border-radius:16px}
+.qa{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:8px;margin-bottom:16px}
+.qb{color:#fff;text-align:center;padding:9px 10px;border-radius:12px;text-decoration:none;font-size:.9rem;background:var(--blue)}
+.qb:nth-child(1){background:#059669}.qb:nth-child(2){background:#0f172a}.qb:nth-child(3){background:#0a66c2}.qb:nth-child(4){background:#0891b2}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.ic{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:10px 14px;min-width:0}
+.ic small{display:block;font-size:.78rem}.ic b{display:block;overflow-wrap:anywhere}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chips span{background:#EAF1FF;color:#1d4ed8;border-radius:99px;padding:4px 14px;font-weight:700;font-size:.9rem}
+blockquote{background:var(--bg);border-inline-start:4px solid var(--cyan);border-radius:12px;padding:12px 16px;white-space:pre-wrap}
+.none{color:var(--mut)}
+.pn{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}
+@media print{body>*:not(#dr){display:none!important}#dr{position:static;width:auto;box-shadow:none;overflow:visible;animation:none;padding:0}.dh .ghost,.act,.sg,.pn,.qa{display:none!important}}
 @media(max-width:820px){.kp{grid-template-columns:repeat(2,1fr)}.set{grid-template-columns:1fr}.row{grid-template-columns:44px 1fr auto}.row .dt{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -208,43 +222,54 @@ function draw(){
  $('kp').innerHTML=[['','الكل',T.length],...Object.keys(ST).map(k=>[k,ST[k],c(k)])].map(([k,l,n])=>`<button data-f="${k}" class="${F==k?'on':''}"><b>${n}</b><span>${l}</span></button>`).join('');
  const R=view();
  $('cnt').textContent='('+R.length+')';
- $('ls').innerHTML=R.length?R.map(t=>`<button class="row" data-id="${esc(t.id)}"><span class="av">${esc((t.team_name||'?').trim().charAt(0))}</span><span class="rm"><b>${esc(t.team_name)}</b><small>${esc(t.leader_name)} · ${esc(t.phone)}</small></span><small class="dt">${esc(fmt(t.created_at))}</small><span class="bd s-${esc(t.status)}">${esc(ST[t.status]||t.status)}</span></button>`).join(''):'<p class="empty">لا توجد طلبات مطابقة.</p>';
+ $('ls').innerHTML=R.length?R.map(t=>`<button class="row" data-id="${esc(t.id)}"><span class="av">${esc((t.team_name||'?').trim().charAt(0))}</span><span class="rm"><b>${esc(t.team_name)}</b><small>${esc(t.leader_name)} · ${mem(t).length} ${mem(t).length==1?'عضو':'أعضاء'} · ${esc(t.phone)}</small></span><small class="dt">${esc(fmt(t.created_at))}</small><span class="bd s-${esc(t.status)}">${esc(ST[t.status]||t.status)}</span></button>`).join(''):'<p class="empty">لا توجد طلبات مطابقة.</p>';
 }
 $('kp').onclick=e=>{const b=e.target.closest('[data-f]');if(b){F=b.dataset.f;draw()}};
 $('ls').onclick=e=>{const b=e.target.closest('[data-id]');if(b)openD(b.dataset.id)};
 $('sq').oninput=draw;$('so').onchange=draw;
 
 /* ---------- تفاصيل الطلب ---------- */
+const mem=t=>(t.members||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+const ago=d=>{const s=(new Date(d)-Date.now())/1e3,a=Math.abs(s),[u,k]=a<3600?[60,'minute']:a<86400?[3600,'hour']:[86400,'day'];return new Intl.RelativeTimeFormat('ar',{numeric:'auto'}).format(Math.round(s/u),k)};
 const inv=t=>`مرحبًا ${t.leader_name}،\n\nيسعدنا قبول فريق «${t.team_name}» في طاولة صُنّاع المستقبل.\nرابط الانضمام لمجموعة اللقاء:\n${INV}${MT?'\nالموعد: '+fmt(MT,{dateStyle:'full',timeStyle:'short'})+(PL?' — '+PL:''):''}\n\nم. أحمد وسام الحايك\nمؤسس NextStep`;
+const sum=t=>`فريق: ${t.team_name}\nالقائد: ${t.leader_name}\nالجوال: ${t.phone}\nالبريد: ${t.email}\nحساب الفريق: ${t.platform_url}\nلينكدإن القائد: ${t.linkedin_url}\n\nالأعضاء:\n${t.members}\n\nلماذا ينضم:\n${t.why_join}\n\nأهدافه من اللقاء:\n${t.goals}\n\nأفكاره للتعاون:\n${t.collab_ideas||'—'}\n\nالحالة: ${ST[t.status]||t.status}`;
 function openD(id){
  const t=T.find(x=>x.id==id);if(!t)return;SEL=id;
- const sec=(h,b)=>b?`<div class="sec"><h3>${h}</h3>${b}</div>`:'';
- const ok=t.status=='accepted';
- $('dr').innerHTML=`<div class="dh"><div><h2>${esc(t.team_name)}</h2><small>${esc(fmt(t.created_at))}</small></div><button class="ghost" data-a="close" aria-label="إغلاق">إغلاق</button></div>
-${sec('القائد',`<b>${esc(t.leader_name)}</b>`)}
-${sec('التواصل',`<div class="lk"><a href="https://wa.me/${esc((t.phone||'').replace(/\D/g,''))}" target="_blank" rel="noopener noreferrer" dir="ltr">${esc(t.phone)}</a><a href="mailto:${esc(t.email)}" dir="ltr">${esc(t.email)}</a><a href="${url(t.platform_url)}" target="_blank" rel="noopener noreferrer">حساب الفريق أو المنصة</a><a href="${url(t.linkedin_url)}" target="_blank" rel="noopener noreferrer">لينكدإن القائد</a></div>`)}
-${sec('أعضاء الفريق',`<pre>${esc(t.members)}</pre>`)}
-${sec('لماذا يريد الانضمام',`<pre>${esc(t.why_join)}</pre>`)}
-${sec('أهدافه من اللقاء',`<pre>${esc(t.goals)}</pre>`)}
-${sec('أفكاره للتعاون',t.collab_ideas?`<pre>${esc(t.collab_ideas)}</pre>`:'')}
-${sec('الحالة',`<div class="sg">${Object.keys(ST).map(k=>`<button data-a="st" data-k="${k}" class="${t.status==k?'on':''}">${ST[k]}</button>`).join('')}</div>`)}
-<div class="act">${ok&&INV?`<a class="btn" href="mailto:${encodeURIComponent(t.email)}?subject=${encodeURIComponent('دعوة: طاولة صُنّاع المستقبل | NextStep AI')}&body=${encodeURIComponent(inv(t))}">إرسال الدعوة بالبريد</a><button class="ghost" data-a="copy">نسخ نص الدعوة</button>`:ok?'<small>أضف رابط مجموعة الواتساب من إعدادات اللقاء ليظهر زر الدعوة.</small>':''}<button class="ghost danger" data-a="del">حذف الطلب</button></div>`;
+ const R=view(),i=R.findIndex(x=>x.id==id),m=mem(t),ok=t.status=='accepted';
+ const qb=(h,l)=>h&&h!='#'?`<a class="qb" href="${h}"${h.startsWith('http')?' target="_blank" rel="noopener noreferrer"':''}>${l}</a>`:'';
+ const ic=(l,v,d)=>`<div class="ic"><small>${l}</small><b${d?' dir="ltr"':''}>${v}</b></div>`;
+ const qt=(h,b)=>`<div class="sec"><h3>${h}</h3>${b?`<blockquote>${esc(b)}</blockquote>`:'<p class="none">لم يُذكر</p>'}</div>`;
+ $('dr').innerHTML=`<div class="dh"><div class="who"><span class="av big">${esc((t.team_name||'?').trim().charAt(0))}</span><div><h2>${esc(t.team_name)}</h2><span class="bd s-${esc(t.status)}">${esc(ST[t.status]||t.status)}</span> <small>وصل ${esc(ago(t.created_at))} · ${esc(fmt(t.created_at))}</small></div></div><button class="ghost" data-a="close">إغلاق</button></div>
+<nav class="qa">${qb('https://wa.me/'+esc((t.phone||'').replace(/\D/g,'')),'واتساب')}${qb('mailto:'+esc(t.email),'بريد')}${qb(url(t.linkedin_url),'لينكدإن القائد')}${qb(url(t.platform_url),'حساب الفريق')}</nav>
+<div class="ig">${ic('القائد',esc(t.leader_name))}${ic('عدد الأعضاء',m.length)}${ic('الجوال',esc(t.phone),1)}${ic('البريد',esc(t.email),1)}</div>
+<div class="sec"><h3>أعضاء الفريق</h3><div class="chips">${m.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div>
+${qt('لماذا يريد الانضمام؟',t.why_join)}${qt('أهدافه من اللقاء',t.goals)}${qt('أفكاره لسبل التعاون',t.collab_ideas)}
+<div class="sec"><h3>الحالة</h3><div class="sg">${Object.keys(ST).map(k=>`<button data-a="st" data-k="${k}" class="${t.status==k?'on':''}">${ST[k]}</button>`).join('')}</div></div>
+<div class="sec"><h3>ملاحظات الإدارة (خاصة بك، تُحفظ عند الخروج من الحقل)</h3><textarea id="nt" maxlength="2000">${esc(t.admin_note)}</textarea></div>
+<div class="act">${ok&&INV?`<a class="btn" href="mailto:${encodeURIComponent(t.email)}?subject=${encodeURIComponent('دعوة: طاولة صُنّاع المستقبل | NextStep AI')}&body=${encodeURIComponent(inv(t))}">إرسال الدعوة بالبريد</a><button class="ghost" data-a="copy">نسخ نص الدعوة</button>`:ok?'<small>أضف رابط مجموعة الواتساب من إعدادات اللقاء ليظهر زر الدعوة.</small>':''}<button class="ghost" data-a="sum">نسخ ملخص الطلب</button><button class="ghost" data-a="print">طباعة بطاقة الطلب</button><button class="ghost danger" data-a="del">حذف الطلب</button></div>
+<div class="pn"><button class="ghost" data-a="prev"${i<1?' disabled':''}>السابق</button><small>${i+1} / ${R.length}</small><button class="ghost" data-a="next"${i<0||i>=R.length-1?' disabled':''}>التالي</button></div>`;
  $('ov').hidden=false;$('dr').hidden=false;$('dr').scrollTop=0;
 }
 function closeD(){SEL=null;$('ov').hidden=true;$('dr').hidden=true}
 $('ov').onclick=closeD;
-addEventListener('keydown',e=>{if(e.key=='Escape')closeD()});
+addEventListener('keydown',e=>{
+ if(e.key=='Escape')return closeD();
+ if(SEL&&!/INPUT|TEXTAREA/.test(e.target.tagName)&&(e.key=='ArrowLeft'||e.key=='ArrowRight'))$('dr').querySelector('[data-a="'+(e.key=='ArrowLeft'?'next':'prev')+'"]')?.click();
+});
 $('dr').onclick=async e=>{
  const b=e.target.closest('[data-a]');if(!b)return;
  const a=b.dataset.a,t=T.find(x=>x.id==SEL);
  if(a=='close')return closeD();
+ if(!t)return;
+ if(a=='prev'||a=='next'){const R=view(),i=R.findIndex(x=>x.id==SEL),n=R[i+(a=='next'?1:-1)];if(n)openD(n.id);return}
  if(a=='st'){
   const old=t.status;t.status=b.dataset.k;
   const{error}=await sb.from('rt_applications').update({status:t.status}).eq('id',t.id);
   if(error){t.status=old;return toast('تعذّر تحديث الحالة',1)}
   toast('تم تحديث الحالة');draw();openD(t.id);
  }
- if(a=='copy'){try{await navigator.clipboard.writeText(inv(t));toast('تم نسخ نص الدعوة')}catch(x){toast('تعذّر النسخ',1)}}
+ if(a=='copy'||a=='sum'){try{await navigator.clipboard.writeText(a=='copy'?inv(t):sum(t));toast(a=='copy'?'تم نسخ نص الدعوة':'تم نسخ ملخص الطلب')}catch(x){toast('تعذّر النسخ',1)}}
+ if(a=='print')print();
  if(a=='del'){
   if(!b.dataset.c){b.dataset.c=1;b.textContent='اضغط مرة أخرى للتأكيد';setTimeout(()=>{if(b.isConnected){b.dataset.c='';b.textContent='حذف الطلب'}},4000);return}
   const{error}=await sb.from('rt_applications').delete().eq('id',t.id);
@@ -252,6 +277,14 @@ $('dr').onclick=async e=>{
   T=T.filter(x=>x.id!=t.id);closeD();draw();toast('تم حذف الطلب');
  }
 };
+$('dr').addEventListener('focusout',async e=>{
+ if(e.target.id!='nt'||!SEL)return;
+ const t=T.find(x=>x.id==SEL),v=e.target.value.trim();
+ if(!t||v==(t.admin_note||''))return;
+ const{error}=await sb.from('rt_applications').update({admin_note:v||null}).eq('id',t.id);
+ if(error)return toast('تعذّر حفظ الملاحظة. نفّذ تحديث قاعدة البيانات أولًا.',1);
+ t.admin_note=v||null;toast('تم حفظ الملاحظة');
+});
 
 /* ---------- التصدير ---------- */
 $('ex').onclick=()=>{
