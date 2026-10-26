@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>لوحة الإدارة | طاولة المنافسين</title>
+<title>لوحة الإدارة | طاولة صُنّاع المستقبل</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0B1220;--blue:#2563EB;--cyan:#06B6D4;--gray:#F8FAFC}
@@ -40,7 +40,7 @@ pre{white-space:pre-wrap;font:inherit}
 </form>
 
 <div id="ap" hidden>
-<div class="row" style="justify-content:space-between;margin-bottom:14px"><h1>طاولة المنافسين: لوحة الإدارة</h1><button class="o" id="lo">خروج</button></div>
+<div class="row" style="justify-content:space-between;margin-bottom:14px"><h1>طاولة صُنّاع المستقبل: لوحة الإدارة</h1><button class="o" id="lo">خروج</button></div>
 
 <div class="box">
 <h2>إعدادات اللقاء</h2><br>
@@ -103,8 +103,8 @@ async function load(){
 }
 function mail(t){
  const when=MT?'\nالموعد: '+new Date(MT).toLocaleString('ar',{dateStyle:'full',timeStyle:'short'})+(PL?' — '+PL:''):'';
- const body=`مرحبًا ${t.leader_name}،\n\nيسعدنا قبول فريق «${t.team_name}» في طاولة المنافسين.\nرابط الانضمام لمجموعة اللقاء:\n${INV}${when}\n\nم. أحمد وسام الحايك\nمؤسس NextStep`;
- return 'mailto:'+encodeURIComponent(t.email)+'?subject='+encodeURIComponent('دعوة: طاولة المنافسين | NextStep AI')+'&body='+encodeURIComponent(body);
+ const body=`مرحبًا ${t.leader_name}،\n\nيسعدنا قبول فريق «${t.team_name}» في طاولة صُنّاع المستقبل.\nرابط الانضمام لمجموعة اللقاء:\n${INV}${when}\n\nم. أحمد وسام الحايك\nمؤسس NextStep`;
+ return 'mailto:'+encodeURIComponent(t.email)+'?subject='+encodeURIComponent('دعوة: طاولة صُنّاع المستقبل | NextStep AI')+'&body='+encodeURIComponent(body);
 }
 function draw(){
  const q=$('sq').value.toLowerCase(),f=$('sf').value;
